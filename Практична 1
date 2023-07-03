@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main() {
+    int t1, t2, t3;
+    printf("Введіть три значення: ");
+    scanf("%d %d %d", &t1, &t2, &t3);
+
+    // Calculate the time to eat the cake together
+    float total_time = 1 / ((1 / (float)t1) + (1 / (float)t2) + (1 / (float)t3));
+
+    printf("Час необхідний для зїдання пирога: %.2f hours\n", total_time);
+
+    return 0;
+}
