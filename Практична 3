@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+// Function to calculate the number of p-digit numbers
+long long int calculateNumberOfNumbers(int p) {
+    long long int count = 0;
+    long long int prevCount = 1;
+    long long int prevPrevCount = 1;
+
+    for (int i = 3; i <= p; i++) {
+        count = prevCount + prevPrevCount;
+        prevPrevCount = prevCount;
+        prevCount = count;
+    }
+
+    return count;
+}
+
+int main() {
+    int p;
+    printf("Enter the value of p: ");
+    scanf("%d", &p);
+
+    if (p <= 0 || p > 30) {
+        printf("Invalid input! p should be between 1 and 30.\n");
+        return 0;
+    }
+
+    long long int result = calculateNumberOfNumbers(p);
+    printf("Number of %d-digit numbers: %lld\n", p, result);
+
+    return 0;
+}
