@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int calculateSteps(int x, int y) {
+    // Calculate the absolute difference between x and y
+    int diff = y - x;
+
+    // If x and y are the same, no steps are needed
+    if (diff == 0) {
+        return 0;
+    }
+
+    // If the difference is less than or equal to 2, only 1 step is needed
+    if (diff <= 2 && diff >= -2) {
+        return 1;
+    }
+
+    // Initialize the number of steps to 2 (accounting for the first and last steps)
+    int steps = 2;
+  
+    // While the difference is greater than 3, we can take steps of length 2
+    while (diff > 3 || diff < -3) {
+        steps++;
+        diff = (diff > 0) ? diff - 2 : diff + 2;
+    }
+  
+    return steps;
+}
+
+int main() {
+    int x, y;
+
+    printf("Enter the value of x: ");
+    scanf("%d", &x);
+
+    printf("Enter the value of y: ");
+    scanf("%d", &y);
+
+    // Check if x and y are within the specified range
+    if (x >= 0 && y >= 0 && x <= y && y < 2147483648) {
+        int steps = calculateSteps(x, y);
+        printf("Minimum number of steps: %d\n", steps);
+    } else {
+        printf("Invalid input. Please make sure 0 <= x <= y < 2^31.\n");
+    }
+
+    return 0;
+}
